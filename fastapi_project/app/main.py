@@ -2,6 +2,7 @@ import os
 from datetime import datetime
 from typing import List, Optional, Any
 from enum import Enum
+from dotenv import load_dotenv # ADDED: Import load_dotenv
 
 from fastapi import FastAPI, HTTPException, Body, Query, Path, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +13,9 @@ from pydantic.json_schema import GetJsonSchemaHandler
 # ---
 from pymongo import MongoClient
 from bson import ObjectId
+
+# ADDED: Load environment variables from .env file
+load_dotenv()
 
 # --- Application Setup ---
 
@@ -31,13 +35,13 @@ app.add_middleware(
 )
 
 # --- Database Connection ---
-# UPDATED: Connection string now points to your MongoDB Atlas cluster.
-# For production, it's highly recommended to set this as an environment variable
-# instead of hardcoding it.
-MONGO_DETAILS = os.environ.get(
-    "MONGO_DETAILS", 
-    "mongodb+srv://vinitkumar8092:Vinit6203@cluster0.jig31l3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-)
+# UPDATED: Connection string is now loaded from the MONGO_DETAILS environment variable.
+MONGO_DETAILS = os.environ.get("MONGO_DETAILS")
+
+# Add a check to ensure the environment variable is set
+if not MONGO_DETAILS:
+    raise ValueError("MONGO_DETAILS environment variable not set. Please create a .env file.")
+
 client = MongoClient(MONGO_DETAILS)
 db = client["task_manager"] # Your database name
 task_collection = db["tasks"] # Your collection name
@@ -215,6 +219,6 @@ async def delete_task(id: str):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Task with ID {id} not found")
     return
 
-@app.get("/", tags=["Task Check"])
+@app.get("/", tags=["Health Check"])
 async def health_check():
     return {"status": "ok", "message": "Welcome to the Task Management API!"}
