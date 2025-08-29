@@ -23,7 +23,6 @@ This directory contains the Next.js/React frontend for the Full-Stack Task Manag
 1. **Navigate to the frontend directory**:
    ```bash
    cd frontend
-   cd qkfrontend
    ```
 
 2. **Install dependencies**:
