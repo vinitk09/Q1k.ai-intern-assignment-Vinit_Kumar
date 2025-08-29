@@ -69,7 +69,6 @@ The backend API will be running at http://localhost:8000. You can view the inter
 1. Navigate to the frontend directory:
    ```bash
    cd frontend
-   cd qkfrontend
    ```
 
 2. Install dependencies:
