@@ -45,7 +45,7 @@ FastAPI automatically generates interactive API documentation. Once the server i
 
 - **Swagger UI**: http://localhost:8000/docs
 
-## 📖 API Endpoint Overview
+## 📖 API Endpoint 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
