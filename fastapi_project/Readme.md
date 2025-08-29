@@ -54,4 +54,8 @@ FastAPI automatically generates interactive API documentation. Once the server i
 | GET | `/api/tasks` | Get all tasks with filtering & pagination. |
 | GET | `/api/tasks/{id}` | Get a single task by its ID. |
 | PUT | `/api/tasks/{id}` | Update an existing task. |
+<<<<<<< HEAD
 | DELETE | `/api/tasks/{id}` | Delete a task. |
+=======
+| DELETE | `/api/tasks/{id}` | Delete a task. |
+>>>>>>> 70d2dbda592cbd7f8aff638634a97e3fa8390298
